@@ -1,0 +1,26 @@
+spring:
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+#      jdbc:
+#        batch_size: 50
+#      default_batch_fetch_size: 50
+
+  datasource:
+    platform: postgres
+    username: jira_123
+    password: 123
+    url: jdbc:postgresql://localhost:5432/jira_123_db
+    driver-class-name: org.postgresql.Driver
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
