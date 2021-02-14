@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    platform: postgres
+    username: test_username
+    password: test_password
+    url: jdbc:postgresql://localhost:11111/test_db
+    driver-class-name: org.postgresql.Driver
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE

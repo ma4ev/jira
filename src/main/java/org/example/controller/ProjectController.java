@@ -46,12 +46,12 @@ public class ProjectController {
     }
 
     @PostMapping("/{id}/addUser")
-    public void addProject(@PathVariable("id") Long projectId, @RequestBody @NotNull Long userId) {
+    public void addUser(@PathVariable("id") Long projectId, @RequestBody @NotNull Long userId) {
         userManagementProjectService.addUser(projectId, userId);
     }
 
     @PostMapping("/{id}/removeUser")
-    public void removeProject(@PathVariable("id") Long projectId, @RequestBody @NotNull Long userId) {
+    public void removeUser(@PathVariable("id") Long projectId, @RequestBody @NotNull Long userId) {
         userManagementProjectService.removeUser(projectId, userId);
     }
 }

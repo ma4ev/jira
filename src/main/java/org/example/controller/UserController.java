@@ -46,7 +46,7 @@ public class UserController {
     }
 
     @PostMapping("/getFiltered")
-    public List<UserResponse> getFiltered(@RequestBody UserFilterRequest filterRequest){
+    public List<UserResponse> getFiltered(@RequestBody UserFilterRequest filterRequest) {
         UserFilter filter = userFilterMapper.toDomain(filterRequest);
 
         return userResponseMapper.toDomain(userService.get(filter));

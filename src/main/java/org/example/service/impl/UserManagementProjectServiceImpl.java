@@ -47,7 +47,7 @@ public class UserManagementProjectServiceImpl implements UserManagementProjectSe
 
     private User getUser(long userId){
         return Optional
-                .ofNullable(userService.getOne(userId))
+                .ofNullable(userService.getById(userId))
                 .orElseThrow(() -> new UserNotFoundException(userId));
     }
 

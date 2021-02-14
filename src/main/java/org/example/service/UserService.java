@@ -16,7 +16,7 @@ public interface UserService {
 
     List<User> getByIds(Collection<Long> ids);
 
-    User getOne(Long id);
+    User getById(Long id);
 
     List<User> get(UserFilter filter);
 }
