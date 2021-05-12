@@ -1,7 +1,7 @@
-package org.example.controller;
+package org.example.controller.v1;
 
 import lombok.val;
-import org.example.dto.UserFilterRequest;
+import org.example.transport.dto.UserFilterRequest;
 import org.example.entity.User;
 import org.example.repository.UserRepository;
 import org.example.utils.BaseIT;
@@ -62,28 +62,27 @@ class UserControllerIT extends BaseIT {
         //given
         User user = createNewUser();
 
-        val json = objectMapper.writeValueAsString(List.of(user));
+        val json = objectMapper.writeValueAsString(user);
 
         //when
-        ResultActions result = performPutRequest(USERS_REQUEST_URL, json);
+        ResultActions result = performPostRequest(USERS_REQUEST_URL, json);
 
         //then
         result.andExpect(status().isOk())
-                .andExpect(jsonPath("$.[0].id", is(1)))
-                .andExpect(jsonPath("$.[0].email", is(user.getEmail())))
-                .andExpect(jsonPath("$.[0].firstName", is(user.getFirstName())))
-                .andExpect(jsonPath("$.[0].lastName", is(user.getLastName())))
-                .andExpect(jsonPath("$.[0].middleName", is(user.getMiddleName())))
-                .andExpect(jsonPath("$.[0].phone", is(user.getPhone())))
-                .andExpect(jsonPath("$.[0].tagName", is("@f.lastname")))
-                .andExpect(jsonPath("$.[0].createdAt").exists())
-                .andExpect(jsonPath("$.[0].updatedAt").doesNotExist());
+                .andExpect(jsonPath("$.id", is(1)))
+                .andExpect(jsonPath("$.email", is(user.getEmail())))
+                .andExpect(jsonPath("$.firstName", is(user.getFirstName())))
+                .andExpect(jsonPath("$.lastName", is(user.getLastName())))
+                .andExpect(jsonPath("$.middleName", is(user.getMiddleName())))
+                .andExpect(jsonPath("$.phone", is(user.getPhone())))
+                .andExpect(jsonPath("$.tagName", is("@f.lastname")))
+                .andExpect(jsonPath("$.createdAt").exists())
+                .andExpect(jsonPath("$.updatedAt").doesNotExist());
 
         List<User> users = userRepository.findAll();
 
         assertThat(users.size()).isEqualTo(1);
     }
-
 
     @DisplayName("getFiltered when search by telegram and pattern is not null and not empty")
     @ParameterizedTest

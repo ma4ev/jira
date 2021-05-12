@@ -1,3 +1,10 @@
+drop sequence if exists projects_id_seq;
+drop sequence if exists users_id_seq;
+
+drop table if exists projects_users;
+drop table if exists projects;
+drop table if exists users;
+
 create sequence projects_id_seq start 1 increment 1;
 create sequence users_id_seq start 1 increment 1;
 

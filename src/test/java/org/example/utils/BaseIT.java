@@ -60,6 +60,7 @@ public class BaseIT {
     }
 
     public ResultActions performGetRequest(String url, Map<String,String> params) throws Exception {
+
         MockHttpServletRequestBuilder rb = MockMvcRequestBuilders
                 .get(url)
                 .contentType(MediaType.APPLICATION_JSON);
@@ -70,6 +71,17 @@ public class BaseIT {
                 .perform(rb)
                 .andDo(print());
     }
+
+    public ResultActions performGetRequest(String url, Object... pathVariables) throws Exception {
+        MockHttpServletRequestBuilder rb = MockMvcRequestBuilders
+                .get(url, pathVariables)
+                .contentType(MediaType.APPLICATION_JSON);
+
+        return mockMvc
+                .perform(rb)
+                .andDo(print());
+    }
+
 
     public ResultActions performGetRequest(String url) throws Exception {
         return performGetRequest(url, Collections.emptyMap());

@@ -7,6 +7,7 @@ import org.example.service.ProjectService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -30,7 +31,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public Project getById(Long id) {
-        return projectRepository.getOne(id);
+    public Optional<Project> getById(Long id) {
+        return projectRepository.findById(id);
     }
 }

@@ -1,6 +1,6 @@
 package org.example.mapper;
 
-import org.example.dto.CreateProjectRequest;
+import org.example.transport.dto.CreateProjectRequest;
 import org.example.entity.Project;
 import org.mapstruct.Mapper;
 

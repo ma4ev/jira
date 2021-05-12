@@ -1,6 +1,6 @@
 package org.example.service;
 
-public interface UserManagementProjectService {
+public interface ProjectManagementService {
 
     void addUser(long projectId, long userId);
 

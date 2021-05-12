@@ -5,6 +5,7 @@ import org.example.model.UserFilter;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
 
@@ -16,7 +17,7 @@ public interface UserService {
 
     List<User> getByIds(Collection<Long> ids);
 
-    User getById(Long id);
+    Optional<User> getById(Long id);
 
     List<User> get(UserFilter filter);
 }

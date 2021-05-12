@@ -3,6 +3,7 @@ package org.example.service;
 import org.example.entity.Project;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ProjectService {
 
@@ -12,5 +13,5 @@ public interface ProjectService {
 
     Project save(Project project);
 
-    Project getById(Long id);
+    Optional<Project> getById(Long id);
 }

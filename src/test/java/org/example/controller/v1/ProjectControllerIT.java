@@ -1,4 +1,4 @@
-package org.example.controller;
+package org.example.controller.v1;
 
 import org.example.entity.Project;
 import org.example.entity.User;
@@ -57,7 +57,7 @@ class ProjectControllerIT extends BaseIT {
         String json = objectMapper.writeValueAsString(List.of(project));
 
         //when
-        ResultActions result = performPutRequest(PROJECTS_REQUEST_URL, json);
+        ResultActions result = performPostRequest(PROJECTS_REQUEST_URL, json);
 
         //then
         result.andExpect(status().isOk())

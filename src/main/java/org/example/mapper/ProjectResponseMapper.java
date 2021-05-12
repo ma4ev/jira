@@ -1,6 +1,6 @@
 package org.example.mapper;
 
-import org.example.dto.ProjectResponse;
+import org.example.transport.dto.ProjectResponse;
 import org.example.entity.Project;
 import org.mapstruct.Mapper;
 

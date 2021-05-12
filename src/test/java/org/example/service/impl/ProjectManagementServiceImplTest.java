@@ -17,6 +17,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -26,7 +27,7 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
-class UserManagementProjectServiceImplTest {
+class ProjectManagementServiceImplTest {
 
     @Mock
     UserService userService;
@@ -35,7 +36,7 @@ class UserManagementProjectServiceImplTest {
     ProjectService projectService;
 
     @InjectMocks
-    UserManagementProjectServiceImpl userManagementProjectService;
+    ProjectManagementServiceImpl projectManagementService;
 
     @Captor
     ArgumentCaptor<User> userArgumentCaptor;
@@ -51,13 +52,13 @@ class UserManagementProjectServiceImplTest {
         Project expectedProject = new Project();
 
         given(userService.getById(userId))
-                .willReturn(new User());
+                .willReturn(Optional.of(new User()));
 
         given(projectService.getById(projectId))
-                .willReturn(expectedProject);
+                .willReturn(Optional.of(expectedProject));
 
         //when
-        userManagementProjectService.addUser(projectId, userId);
+        projectManagementService.addUser(projectId, userId);
 
         //then
         verify(userService).save(userArgumentCaptor.capture());
@@ -83,13 +84,13 @@ class UserManagementProjectServiceImplTest {
         user.addProject(expectedProject);
 
         given(userService.getById(userId))
-                .willReturn(user);
+                .willReturn(Optional.of(user));
 
         given(projectService.getById(projectId))
-                .willReturn(expectedProject);
+                .willReturn(Optional.of(expectedProject));
 
         //when
-        userManagementProjectService.removeUser(projectId, userId);
+        projectManagementService.removeUser(projectId, userId);
 
         //then
         verify(userService).save(userArgumentCaptor.capture());
@@ -108,12 +109,12 @@ class UserManagementProjectServiceImplTest {
         long userId = 1L;
 
         given(userService.getById(userId))
-                .willReturn(new User());
+                .willReturn(Optional.of(new User()));
 
         //when
         ProjectNotFoundException e = assertThrows(
                 ProjectNotFoundException.class,
-                () -> userManagementProjectService.addUser(projectId, userId)
+                () -> projectManagementService.addUser(projectId, userId)
         );
 
         //then
@@ -132,7 +133,7 @@ class UserManagementProjectServiceImplTest {
         //when
         UserNotFoundException e = assertThrows(
                 UserNotFoundException.class,
-                () -> userManagementProjectService.addUser(projectId, userId)
+                () -> projectManagementService.addUser(projectId, userId)
         );
 
         //then
